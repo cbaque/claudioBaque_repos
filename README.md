@@ -9,6 +9,7 @@
 
 1. Clonar proyecto
 2. ``` npm install ```
+3. reemplazar ``` .env-template ``` por ``` .env ```
 
 ## Running the app
 
