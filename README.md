@@ -7,9 +7,8 @@
 
 ## Installation
 
-```bash
-$ npm install
-```
+1. Clonar proyecto
+2. ```bash npm install
 
 ## Running the app
 
