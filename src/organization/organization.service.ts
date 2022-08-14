@@ -47,6 +47,8 @@ export class OrganizationService {
       ...updateOrganizationDto
     });
 
+    console.log(updateOrganizationDto)
+
     if ( !organization )
       throw new NotFoundException('Organizacion no encontrada.');       
 

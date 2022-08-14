@@ -2,6 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrganizationModule } from './organization/organization.module';
+import { StatusRepositoriesModule } from './status-repositories/status-repositories.module';
+import { TribeModule } from './tribe/tribe.module';
+import { RepositoryModule } from './repository/repository.module';
+import { MetricsModule } from './metrics/metrics.module';
 
 @Module({
   imports: [
@@ -24,7 +28,11 @@ import { OrganizationModule } from './organization/organization.module';
       },
 
     }),
-    OrganizationModule
+    OrganizationModule,
+    StatusRepositoriesModule,
+    TribeModule,
+    RepositoryModule,
+    MetricsModule
   ],
   controllers: [],
   providers: [],
