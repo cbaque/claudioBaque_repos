@@ -8,7 +8,7 @@
 ## Installation
 
 1. Clonar proyecto
-2. ```bash npm install
+2. ``` npm install ```
 
 ## Running the app
 
