@@ -7,6 +7,8 @@ import { createQueryBuilder, Repository } from 'typeorm';
 import { Metric } from 'src/metrics/entities/metric.entity';
 import { ResponseRepos } from './entities/responseRepos.entity';
 import { Tribe } from 'src/tribe/entities/tribe.entity';
+import { equal } from 'assert';
+import { findIndex } from 'rxjs';
 
 @Injectable()
 export class RepositoryService {
@@ -54,11 +56,17 @@ export class RepositoryService {
     //   relations: ['id_repository', 'id_repository.id_tribe', 'id_repository.id_tribe.id_organization']
     // })
 
-    const data = await this.tribeRepository.find({
+    const data = await this.repoRepository.find({
       relations: {
-        organization: true
+        tribe: {
+          organization: true
+        }
+      },
+      where: {
+        tribe : { id_tribe }
       }
-    })
+    });
+
 
     return data;
 

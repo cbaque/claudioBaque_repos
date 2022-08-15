@@ -1,5 +1,6 @@
 import { Organization } from "src/organization/entities/organization.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Repository } from "src/repository/entities/repository.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Tribe {
@@ -17,6 +18,9 @@ export class Tribe {
 
     @Column('int', { nullable: false, default: 1 })
     status: number
+
+    @OneToMany( ()=> Repository, ( repos ) => repos.tribe )
+    tribe: Repository;
 
 
 }

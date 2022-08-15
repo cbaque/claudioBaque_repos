@@ -6,10 +6,10 @@ export class Repository {
     @PrimaryGeneratedColumn('identity')
     id_repository: number;
 
-    @Column('int')
-    @ManyToOne(() => Tribe, (id) => id.id_tribe)
+    // @Column('int')
+    @ManyToOne(() => Tribe, (tribe) => tribe.id_tribe)
     @JoinColumn({name: "id_tribe"})
-    id_tribe: number    
+    tribe: Tribe    
 
     @Column('char', { length: 50, nullable: false })
     name: string    
