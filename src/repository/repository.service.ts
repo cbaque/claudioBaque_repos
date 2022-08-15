@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRepositoryDto } from './dto/create-repository.dto';
 import { UpdateRepositoryDto } from './dto/update-repository.dto';
@@ -6,6 +6,7 @@ import { Repository as RepoEntity } from './entities/repository.entity';
 import { createQueryBuilder, Repository } from 'typeorm';
 import { Metric } from 'src/metrics/entities/metric.entity';
 import { ResponseRepos } from './entities/responseRepos.entity';
+import { Tribe } from 'src/tribe/entities/tribe.entity';
 
 @Injectable()
 export class RepositoryService {
@@ -16,6 +17,9 @@ export class RepositoryService {
 
     @InjectRepository(RepoEntity)
     private readonly repoRepository: Repository<RepoEntity>,
+
+    @InjectRepository(Tribe)
+    private readonly tribeRepository: Repository<Tribe>,    
   ) {
   }
 
@@ -38,7 +42,14 @@ export class RepositoryService {
     return `This action returns all repository`;
   }
 
-  async findOne(id: number) {
+  async findOne(id_tribe: number) {
+
+    const tribe = await this.tribeRepository.findOneBy({id_tribe});
+
+    if ( !tribe )
+      throw new NotFoundException('La Tribu no se encuentra registrada')
+
+
     const data = await this.metricRepository.find({
       relations: ['id_repository', 'id_repository.id_tribe', 'id_repository.id_tribe.id_organization']
     })
@@ -57,6 +68,7 @@ export class RepositoryService {
           vulnerabilities: res.vulnerabilities,
           hotspots: res.hotspot,
           codeSmells: res.code_smells,
+          state: res.id_repository.state
         }
       );
     })
