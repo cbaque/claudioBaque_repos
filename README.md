@@ -28,15 +28,26 @@ $ npm run start:prod
 ``` http://localhost:3000/api/repository-status ```
 
 ## EXECUTE EJERCICIO 2
+``` NEW ORGANIZATION ```
 1. ``` http://localhost:3000/api/organization ```
-* TYPE POST parameters JSON raw body
+* TYPE POST parameters JSON raw body example:
 ``` 
   {
     "name": "CISNE II"
   } 
 ``` 
 
+``` ALL ORGANIZATION ```
 2. ``` http://localhost:3000/api/organization ```
 * TYPE GET 
+
+``` DELETE ORGANIZATION ```
+3. ``` http://localhost:3000/api/organization/id ```
+* TYPE DELETE 
+
+
+``` EDIT ORGANIZATION ```
+4. ``` http://localhost:3000/api/organization/id ```
+* TYPE PUTCH 
 
 
