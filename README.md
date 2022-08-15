@@ -56,4 +56,7 @@ $ npm run start:prod
   } 
 ```
 
+## EXECUTE EJERCICIO 3
+1. ``` http://localhost:3000/api/repository/1 ```
+* TYPE GET 
 
