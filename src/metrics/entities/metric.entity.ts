@@ -4,12 +4,14 @@ import { Column, Double, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGenerat
 @Entity()
 export class Metric {
 
-    @PrimaryGeneratedColumn('identity')  
-    @ManyToOne(() => Repository, (repos) => repos.id_repository)
-    id_repository: number;
+    @Column('int')
+    @PrimaryGeneratedColumn('identity')
+    @OneToOne(() => Repository, (id) => id.id_repository)
+    @JoinColumn({name: "id_repository"})
+    id_repository: number   
 
-    @Column('float', { nullable: false })
-    coverage: Double
+    @Column({ type: 'decimal', default: 0 })
+    coverage: number
 
     @Column('int', { nullable: false })
     bugs: number   
