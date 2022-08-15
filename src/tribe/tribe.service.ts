@@ -33,9 +33,9 @@ export class TribeService {
   //   return `This action returns all tribe`;
   // }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} tribe`;
-  // }
+  findOne(id: number) {
+
+  }
 
   // update(id: number, updateTribeDto: UpdateTribeDto) {
   //   return `This action updates a #${id} tribe`;

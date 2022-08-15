@@ -1,16 +1,17 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { createQueryBuilder, Repository } from 'typeorm';
 import { CreateMetricDto } from './dto/create-metric.dto';
 import { UpdateMetricDto } from './dto/update-metric.dto';
 import { Metric } from './entities/metric.entity';
+import { Repository as RepoEntity } from '../repository/entities/repository.entity';
 
 @Injectable()
 export class MetricsService {
 
   constructor(
     @InjectRepository(Metric)
-    private readonly metricRepository: Repository<Metric>
+    private readonly metricRepository: Repository<Metric>,
   ) {
   }
 
@@ -34,8 +35,10 @@ export class MetricsService {
     return `This action returns all metrics`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} metric`;
+  findOne(id_tribe: number) {
+
+
+    
   }
 
   update(id: number, updateMetricDto: UpdateMetricDto) {

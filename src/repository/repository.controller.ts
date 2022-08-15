@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, ParseIntPipe, HttpStatus } from '@nestjs/common';
 import { RepositoryService } from './repository.service';
 import { CreateRepositoryDto } from './dto/create-repository.dto';
 import { UpdateRepositoryDto } from './dto/update-repository.dto';
+import { Response } from 'express';
 
 @Controller('repository')
 export class RepositoryController {
@@ -18,8 +19,12 @@ export class RepositoryController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.repositoryService.findOne(+id);
+  async findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response ) {
+    const data = await this.repositoryService.findOne(id);
+    
+    return res.status(HttpStatus.OK).json({
+      'repositories': data
+    });
   }
 
   @Patch(':id')

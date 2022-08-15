@@ -3,14 +3,19 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRepositoryDto } from './dto/create-repository.dto';
 import { UpdateRepositoryDto } from './dto/update-repository.dto';
 import { Repository as RepoEntity } from './entities/repository.entity';
-import { Repository } from 'typeorm';
+import { createQueryBuilder, Repository } from 'typeorm';
+import { Metric } from 'src/metrics/entities/metric.entity';
+import { ResponseRepos } from './entities/responseRepos.entity';
 
 @Injectable()
 export class RepositoryService {
   
   constructor(
+    @InjectRepository(Metric)
+    private readonly metricRepository: Repository<Metric>,
+
     @InjectRepository(RepoEntity)
-    private readonly repoRepository: Repository<RepoEntity>
+    private readonly repoRepository: Repository<RepoEntity>,
   ) {
   }
 
@@ -33,8 +38,29 @@ export class RepositoryService {
     return `This action returns all repository`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} repository`;
+  async findOne(id: number) {
+    const data = await this.metricRepository.find({
+      relations: ['id_repository', 'id_repository.id_tribe', 'id_repository.id_tribe.id_organization']
+    })
+
+    let response: ResponseRepos[] = [];
+
+    data.forEach( (res: any ) => {
+      response.push(
+        {
+          id: res.id_repository.id_repository,
+          name: String(res.id_repository.name).trim(),
+          tribe: String(res.id_repository.id_tribe.name).trim(),
+          organization: String(res.id_repository.id_tribe.id_organization.name).trim(),
+          coverage: res.coverage,
+          bugs: res.bugs,
+          vulnerabilities: res.vulnerabilities,
+          hotspots: res.hotspot,
+          codeSmells: res.code_smells,
+        }
+      );
+    })
+    return response;
   }
 
   update(id: number, updateRepositoryDto: UpdateRepositoryDto) {
@@ -44,4 +70,6 @@ export class RepositoryService {
   remove(id: number) {
     return `This action removes a #${id} repository`;
   }
+
+
 }

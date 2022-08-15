@@ -16,7 +16,7 @@ import { MetricsModule } from './metrics/metrics.module';
       database: process.env.DB_DATABASE,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
-      synchronize: true,
+      // synchronize: true,
       autoLoadEntities:true,
       ssl: true,
       extra: {
@@ -33,6 +33,7 @@ import { MetricsModule } from './metrics/metrics.module';
   ],
   controllers: [],
   providers: [],
+  exports: []
 })
 export class AppModule {}
 
