@@ -1,14 +1,14 @@
 import { Tribe } from "src/tribe/entities/tribe.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity()
 export class Repository {
     @PrimaryGeneratedColumn('identity')
     id_repository: number;
 
-    @OneToOne(() => Tribe)
-    @JoinColumn()
     @Column('int')
+    @ManyToOne(() => Tribe, (id) => id.id_tribe)
+    @JoinColumn({name: "id_tribe"})
     id_tribe: number    
 
     @Column('char', { length: 50, nullable: false })

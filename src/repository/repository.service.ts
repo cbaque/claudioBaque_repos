@@ -1,11 +1,32 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRepositoryDto } from './dto/create-repository.dto';
 import { UpdateRepositoryDto } from './dto/update-repository.dto';
+import { Repository as RepoEntity } from './entities/repository.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RepositoryService {
-  create(createRepositoryDto: CreateRepositoryDto) {
-    return 'This action adds a new repository';
+  
+  constructor(
+    @InjectRepository(RepoEntity)
+    private readonly repoRepository: Repository<RepoEntity>
+  ) {
+  }
+
+  async create(createRepositoryDto: CreateRepositoryDto) {
+    try {
+      
+      const repos =  this.repoRepository.create(createRepositoryDto);
+      await this.repoRepository.save(repos);
+
+      return repos;
+      
+    } catch (error) {
+
+      throw new BadRequestException(error)
+      
+    }
   }
 
   findAll() {
