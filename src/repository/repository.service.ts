@@ -56,15 +56,27 @@ export class RepositoryService {
     //   relations: ['id_repository', 'id_repository.id_tribe', 'id_repository.id_tribe.id_organization']
     // })
 
-    const data = await this.repoRepository.find({
+    const data = await this.metricRepository.find({
       relations: {
-        tribe: {
-          organization: true
+        repos: {
+          tribe: {
+            organization: true
+          }
         }
       },
       where: {
-        tribe : { id_tribe }
+        repos: {
+          tribe: { id_tribe }
+        }
       }
+      // relations: {
+      //   tribe: {
+      //     organization: true
+      //   }
+      // },
+      // where: {
+      //   tribe : { id_tribe }
+      // }
     });
 
 

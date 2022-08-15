@@ -1,14 +1,15 @@
 import { Repository } from "src/repository/entities/repository.entity";
-import { Column, Double, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Double, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Metric {
 
-    @Column('int')
-    @PrimaryGeneratedColumn('identity')
+    @PrimaryColumn()
+    readonly id_repository: number;
+
     @OneToOne(() => Repository, (id) => id.id_repository)
     @JoinColumn({name: "id_repository"})
-    id_repository: number   
+    repos: Repository   
 
     @Column({ type: 'decimal', default: 0 })
     coverage: number
