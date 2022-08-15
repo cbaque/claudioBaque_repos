@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Organization } from 'src/organization/entities/organization.entity';
 import { Repository } from 'typeorm';
 import { CreateTribeDto } from './dto/create-tribe.dto';
 import { UpdateTribeDto } from './dto/update-tribe.dto';
@@ -15,18 +16,19 @@ export class TribeService {
   }
 
   async create(createTribeDto: CreateTribeDto) {
-    try {
+    // try {
       
-      const tribe =  this.tribeRepository.create(createTribeDto);
-      await this.tribeRepository.save(tribe);
+    //   const data = new Organization();
+    //   const tribe =  this.tribeRepository.create(createTribeDto );
+    //   await this.tribeRepository.save(tribe);
 
-      return tribe;
+    //   return tribe;
       
-    } catch (error) {
+    // } catch (error) {
 
-      throw new BadRequestException(error)
+    //   throw new BadRequestException(error)
       
-    }
+    // }
   }
 
   // findAll() {

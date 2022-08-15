@@ -50,29 +50,37 @@ export class RepositoryService {
       throw new NotFoundException('La Tribu no se encuentra registrada')
 
 
-    const data = await this.metricRepository.find({
-      relations: ['id_repository', 'id_repository.id_tribe', 'id_repository.id_tribe.id_organization']
+    // const data = await this.metricRepository.find({
+    //   relations: ['id_repository', 'id_repository.id_tribe', 'id_repository.id_tribe.id_organization']
+    // })
+
+    const data = await this.tribeRepository.find({
+      relations: {
+        organization: true
+      }
     })
 
-    let response: ResponseRepos[] = [];
+    return data;
 
-    data.forEach( (res: any ) => {
-      response.push(
-        {
-          id: res.id_repository.id_repository,
-          name: String(res.id_repository.name).trim(),
-          tribe: String(res.id_repository.id_tribe.name).trim(),
-          organization: String(res.id_repository.id_tribe.id_organization.name).trim(),
-          coverage: res.coverage + '%',
-          bugs: +res.bugs,
-          vulnerabilities: +res.vulnerabilities,
-          hotspots: +res.hotspot,
-          codeSmells: +res.code_smells,
-          state: res.id_repository.state
-        }
-      );
-    })
-    return response;
+    // let response: ResponseRepos[] = [];
+
+    // data.forEach( (res: any ) => {
+    //   response.push(
+    //     {
+    //       id: res.id_repository.id_repository,
+    //       name: String(res.id_repository.name).trim(),
+    //       tribe: String(res.id_repository.id_tribe.name).trim(),
+    //       organization: String(res.id_repository.id_tribe.id_organization.name).trim(),
+    //       coverage: res.coverage + '%',
+    //       bugs: +res.bugs,
+    //       vulnerabilities: +res.vulnerabilities,
+    //       hotspots: +res.hotspot,
+    //       codeSmells: +res.code_smells,
+    //       state: res.id_repository.state
+    //     }
+    //   );
+    // })
+    // return response;
   }
 
   update(id: number, updateRepositoryDto: UpdateRepositoryDto) {

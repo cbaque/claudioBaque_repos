@@ -7,10 +7,10 @@ export class Tribe {
     @PrimaryGeneratedColumn('identity')
     id_tribe: number;
 
-    @Column('int')
-    @ManyToOne(() => Organization, (id) => id.id_organization)
+    // @Column('int')
+    @ManyToOne(() => Organization, (organization) => organization.id_organization)
     @JoinColumn({name: "id_organization"})
-    id_organization: number;
+    organization: Organization;
 
     @Column('char', { length: 50, nullable: false })
     name: string
