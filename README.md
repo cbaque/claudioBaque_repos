@@ -22,3 +22,18 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+```
+## EXECUTE EJERCICIO 1
+``` http://localhost:3000/api/repository-status ```
+
+## EXECUTE EJERCICIO 2
+``` http://localhost:3000/api/organization ```
+``` TYPE POST send raw body json ``` 
+``` 
+  {
+    "name": "CISNE II"
+  } 
+``` 
+
+
