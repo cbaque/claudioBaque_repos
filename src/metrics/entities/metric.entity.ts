@@ -1,7 +1,11 @@
-import { Column, Double, PrimaryGeneratedColumn } from "typeorm";
+import { Repository } from "src/repository/entities/repository.entity";
+import { Column, Double, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class Metric {
-    @PrimaryGeneratedColumn('identity')
+
+    @PrimaryGeneratedColumn('identity')  
+    @ManyToOne(() => Repository, (repos) => repos.id_repository)
     id_repository: number;
 
     @Column('float', { nullable: false })
