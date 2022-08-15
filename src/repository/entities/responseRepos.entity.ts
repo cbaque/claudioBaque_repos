@@ -3,7 +3,7 @@ export class ResponseRepos {
     name?: string;
     tribe: string;
     organization?: string;
-    coverage?: number;
+    coverage?: string;
     codeSmells?: number;
     bugs?: number;
     vulnerabilities?: number;

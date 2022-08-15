@@ -63,11 +63,11 @@ export class RepositoryService {
           name: String(res.id_repository.name).trim(),
           tribe: String(res.id_repository.id_tribe.name).trim(),
           organization: String(res.id_repository.id_tribe.id_organization.name).trim(),
-          coverage: res.coverage,
-          bugs: res.bugs,
-          vulnerabilities: res.vulnerabilities,
-          hotspots: res.hotspot,
-          codeSmells: res.code_smells,
+          coverage: res.coverage + '%',
+          bugs: +res.bugs,
+          vulnerabilities: +res.vulnerabilities,
+          hotspots: +res.hotspot,
+          codeSmells: +res.code_smells,
           state: res.id_repository.state
         }
       );
