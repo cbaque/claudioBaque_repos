@@ -1,26 +1,47 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateTribeDto } from './dto/create-tribe.dto';
 import { UpdateTribeDto } from './dto/update-tribe.dto';
+import { Tribe } from './entities/tribe.entity';
 
 @Injectable()
 export class TribeService {
-  create(createTribeDto: CreateTribeDto) {
-    return 'This action adds a new tribe';
+
+  constructor(
+    @InjectRepository(Tribe)
+    private readonly tribeRepository: Repository<Tribe>
+  ) {
   }
 
-  findAll() {
-    return `This action returns all tribe`;
+  async create(createTribeDto: CreateTribeDto) {
+    try {
+      
+      const tribe =  this.tribeRepository.create(createTribeDto);
+      await this.tribeRepository.save(tribe);
+
+      return tribe;
+      
+    } catch (error) {
+
+      throw new BadRequestException(error)
+      
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tribe`;
-  }
+  // findAll() {
+  //   return `This action returns all tribe`;
+  // }
 
-  update(id: number, updateTribeDto: UpdateTribeDto) {
-    return `This action updates a #${id} tribe`;
-  }
+  // findOne(id: number) {
+  //   return `This action returns a #${id} tribe`;
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} tribe`;
-  }
+  // update(id: number, updateTribeDto: UpdateTribeDto) {
+  //   return `This action updates a #${id} tribe`;
+  // }
+
+  // remove(id: number) {
+  //   return `This action removes a #${id} tribe`;
+  // }
 }

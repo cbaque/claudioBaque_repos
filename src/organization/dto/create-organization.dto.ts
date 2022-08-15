@@ -1,4 +1,4 @@
-import { IsIn, IsNumber, IsPositive, IsString, MaxLength, MinLength } from "class-validator";
+import { IsIn, IsNumber, IsOptional, IsPositive, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreateOrganizationDto {
     
@@ -7,7 +7,7 @@ export class CreateOrganizationDto {
     name: string;
 
     @IsNumber()
-    @IsPositive()
     @IsIn([0,1])
+    @IsOptional()
     status: number;
 }

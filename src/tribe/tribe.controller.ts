@@ -12,23 +12,23 @@ export class TribeController {
     return this.tribeService.create(createTribeDto);
   }
 
-  @Get()
-  findAll() {
-    return this.tribeService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.tribeService.findAll();
+  // }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tribeService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.tribeService.findOne(+id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTribeDto: UpdateTribeDto) {
-    return this.tribeService.update(+id, updateTribeDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateTribeDto: UpdateTribeDto) {
+  //   return this.tribeService.update(+id, updateTribeDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tribeService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.tribeService.remove(+id);
+  // }
 }

@@ -8,7 +8,8 @@ import { Tribe } from './entities/tribe.entity';
   controllers: [TribeController],
   providers: [TribeService],
   imports: [
-    TypeOrmModule.forFeature([Tribe])
+    TypeOrmModule.forFeature([Tribe]),
+    
   ]
 })
 export class TribeModule {}

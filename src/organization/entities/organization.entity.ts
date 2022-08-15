@@ -9,6 +9,6 @@ export class Organization {
     @Column('char', { length: 50, nullable: false })
     name: string
 
-    @Column('int', { nullable: false })
+    @Column('int', { nullable: false, default: 1 })
     status: number
 }
