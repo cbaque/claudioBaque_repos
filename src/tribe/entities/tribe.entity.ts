@@ -1,10 +1,14 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Organization } from "src/organization/entities/organization.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class Tribe {
 
     @PrimaryGeneratedColumn('identity')
     id_tribe: number;
 
+    @OneToOne(() => Organization)
+    @JoinColumn()
     @Column('int')
     id_organization: number;
 

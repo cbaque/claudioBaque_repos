@@ -25,6 +25,8 @@ import { MetricsModule } from './metrics/metrics.module';
           rejectUnauthorized: false,
         },
       },
+      entities: [],
+      migrations: []
 
     }),
     OrganizationModule,
