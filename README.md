@@ -22,3 +22,11 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+```
+
+## Execute API - EJERICIO 1
+``` http://localhost:3000/api/repository-status ```
+
+
+
