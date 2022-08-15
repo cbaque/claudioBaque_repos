@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrganizationModule } from './organization/organization.module';
-import { StatusRepositoriesModule } from './status-repositories/status-repositories.module';
 import { TribeModule } from './tribe/tribe.module';
 import { RepositoryModule } from './repository/repository.module';
 import { MetricsModule } from './metrics/metrics.module';
@@ -17,7 +16,7 @@ import { MetricsModule } from './metrics/metrics.module';
       database: process.env.DB_DATABASE,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
-      // synchronize: true,
+      synchronize: true,
       autoLoadEntities:true,
       ssl: true,
       extra: {
@@ -29,7 +28,6 @@ import { MetricsModule } from './metrics/metrics.module';
 
     }),
     OrganizationModule,
-    StatusRepositoriesModule,
     TribeModule,
     RepositoryModule,
     MetricsModule
