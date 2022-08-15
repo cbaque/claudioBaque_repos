@@ -28,12 +28,15 @@ $ npm run start:prod
 ``` http://localhost:3000/api/repository-status ```
 
 ## EXECUTE EJERCICIO 2
-``` http://localhost:3000/api/organization ```
-``` TYPE POST send raw body json ``` 
+1. ``` http://localhost:3000/api/organization ```
+* TYPE POST parameters JSON raw body
 ``` 
   {
     "name": "CISNE II"
   } 
 ``` 
+
+2. ``` http://localhost:3000/api/organization ```
+* TYPE GET 
 
 
