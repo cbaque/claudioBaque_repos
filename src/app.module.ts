@@ -6,6 +6,7 @@ import { TribeModule } from './tribe/tribe.module';
 import { RepositoryModule } from './repository/repository.module';
 import { MetricsModule } from './metrics/metrics.module';
 import { RepositoryStatusModule } from './repository-status/repository-status.module';
+import { CsvModule } from 'nest-csv-parser'
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { RepositoryStatusModule } from './repository-status/repository-status.mo
     TribeModule,
     RepositoryModule,
     MetricsModule,
-    RepositoryStatusModule
+    RepositoryStatusModule,
+    
   ],
   controllers: [],
   providers: [],
