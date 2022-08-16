@@ -57,6 +57,10 @@ $ npm run start:prod
 ```
 
 ## EXECUTE EJERCICIO 3
-1. ``` http://localhost:3000/api/repository/1 ```
+1. ``` http://localhost:3000/api/repository/id ```
+* TYPE GET 
+
+## EXECUTE EJERCICIO 4
+1. ``` http://localhost:3000/api/repository/scv/id ```
 * TYPE GET 
 
